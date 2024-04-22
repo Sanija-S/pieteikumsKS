@@ -51,13 +51,17 @@ while True:
   ier_datums=values["ierasanas_datums"]
    
    # kā saglabāt datus datu bāzē
-c.execute("""INSERT INTO salidojums(vards, uzvards, dzimums, vecums, ierasanas_datums)
+  c.execute("""INSERT INTO salidojums(vards, uzvards, dzimums, vecums, ierasanas_datums)
           VALUES (?,?,?,?,?) 
           """,(vards, uzvards, dzimums, vecums, ier_datums))  #c- objekts, kas strada piesleguma, komanda, kas laus izpildit sql3 komantas- execute, iekavas noradu kurā laukā tiks ievietots, placeholdes(vietas turetaji)- jautajumu zimes, vertibas kas tiks pievienotas velak izmantojot dotos parametrus- pasas beigas jaliek ievavas mainigie
+
+  conn.commit() # jānodod pieslegums, lai komandas tiktu izpildītas, imantojot commit
+
+  sg. popup("Reģistrācija veiksmīga!")
 
 #viss... jaizver
 
 logs.close()
-
+  
 
  #vērtību kortesh/ž-
