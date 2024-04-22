@@ -40,6 +40,24 @@ while True:
  if event==sg.WIN_CLOSED or event== "Iziet":
   break
  
+#datu apstrāde pēc pogas nospiešanas
+ 
+ elif event=="Reģistrēties":
+  #jāiegūst dati
+  vards=values["vards"]
+  uzvards=values["uzvards"]
+  dzimums="Vīrietis" if values["dzimumsV"] else "Sieviete" # piskiranas izteiksme kura nosaka kuru radio pogu izvelejas lietotajs
+  vecums=int(values["vecums"])
+  ier_datums=values["ierasanas_datums"]
+   
+   # kā saglabāt datus datu bāzē
+c.execute("""INSERT INTO salidojums(vards, uzvards, dzimums, vecums, ierasanas_datums)
+          VALUES (?,?,?,?,?) 
+          """,(vards, uzvards, dzimums, vecums, ier_datums))  #c- objekts, kas strada piesleguma, komanda, kas laus izpildit sql3 komantas- execute, iekavas noradu kurā laukā tiks ievietots, placeholdes(vietas turetaji)- jautajumu zimes, vertibas kas tiks pievienotas velak izmantojot dotos parametrus- pasas beigas jaliek ievavas mainigie
+
 #viss... jaizver
 
- logs.close()
+logs.close()
+
+
+ #vērtību kortesh/ž-
